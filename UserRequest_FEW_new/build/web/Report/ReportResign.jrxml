@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportResign" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="496b1a08-c919-4f3c-86a1-2fb2590abb83">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="M3"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.5394743546921197"/>
+	<property name="ireport.x" value="79"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="From" class="java.lang.Integer"/>
+	<parameter name="To" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT ST_CONO,RTRIM(ST_EPNM) || ' ' || RTRIM(ST_ENAME) || ' ' || RTRIM(ST_ELNAME) AS ENAME,RTRIM(ST_TPNM) || ' ' || RTRIM(ST_TNAME) || ' ' || RTRIM(ST_TLNAME) AS TNAME,
+ST_POSITON,ST_COSTC,ST_REDT,CASE WHEN RTRIM(ST_EMAIL) IN ('#N/A','','null') THEN '-' ELSE RTRIM(ST_EMAIL) END AS EMAIL,CASE WHEN RTRIM(ST_M3) IN  ('#N/A','','null') THEN '-' ELSE RTRIM(ST_M3) END AS ST_M3 ,ST_CODE
+FROM BRLDTA0100.STAFFLIST
+LEFT JOIN m3fdbprd.fchacc ON ST_CONO = EACONO AND eaaitm = ST_COSTC
+WHERE ST_REDT BETWEEN  $P{From}  AND   $P{To}
+AND EAAITP = '2'
+and eadivi NOT IN ('','120','130')
+and ealccd = '0']]>
+	</queryString>
+	<field name="ST_CONO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ST_CONO"/>
+	</field>
+	<field name="ENAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ENAME"/>
+	</field>
+	<field name="TNAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TNAME"/>
+	</field>
+	<field name="ST_POSITON" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ST_POSITON"/>
+	</field>
+	<field name="ST_COSTC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ST_COSTC"/>
+	</field>
+	<field name="ST_REDT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ST_REDT"/>
+	</field>
+	<field name="EMAIL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EMAIL"/>
+	</field>
+	<field name="ST_M3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ST_M3"/>
+	</field>
+	<field name="ST_CODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ST_CODE"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="351" y="0" width="100" height="20" uuid="2d74fa4e-6350-4044-a4a7-b5656caf5ea3"/>
+				<textElement textAlignment="Center">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Report Resign]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="20" width="71" height="16" uuid="441957df-8fd3-41e2-ac70-019d855bb981"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[From :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="351" y="20" width="70" height="16" uuid="ba34e2e7-37cf-4c19-aac8-ff9560446aa5"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{From}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="418" y="20" width="30" height="16" uuid="9be9617d-c34d-456c-827f-e07390316316"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[To :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="20" width="80" height="16" uuid="3a85245f-e4a2-4b5e-a0f1-51119f83eb08"/>
+				<textElement>
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{To}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="0" width="50" height="20" uuid="e1fbbcd6-1e90-474c-904a-807923200fda">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7905b78-1304-4b82-bed1-39fa7893469a"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Company]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="24" height="20" uuid="04d0fca6-cbca-4466-97ed-06c47c95f561"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="0" width="56" height="20" uuid="4095f31f-03a0-4fe2-800c-ec3459a7742d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2461a39a-9804-4610-89c3-57b66cfef200"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="0" width="146" height="20" uuid="7d2ee954-85e9-4d14-a8ea-7cd3d606dfac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82fffba5-2965-42de-b289-0a420c9e91b3"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="120" height="20" uuid="5542bbc2-cfdb-4dda-8cf8-6cb7db102b70">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3e79ceb9-9c9d-4bcb-b708-d7cd0f0732b7"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="0" width="140" height="20" uuid="f13938ff-dd5f-432b-a7cf-077fa9f228bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cd549ce-dcab-44d7-a844-ab7eb7d9eef8"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POSITON]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="536" y="0" width="60" height="20" uuid="8618fa8a-103d-4c06-a62f-abc299ab7e0d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6e87b01-71c8-400a-9411-010e3ba0b1f9"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resign_Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="596" y="0" width="144" height="20" uuid="32c748eb-2f04-47dc-b007-c416951a67ac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fb0492ef-5bdc-4849-a339-b3eda656563d"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="740" y="0" width="62" height="20" uuid="ef199659-9a34-4035-a673-c5eaae35d2d4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16ef35a6-a120-4aca-aebc-90287df6c372"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[M3-INFO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="24" y="0" width="50" height="20" uuid="b7998666-316a-45c2-b9c7-3010b1bba484">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7905b78-1304-4b82-bed1-39fa7893469a"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ST_CONO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="24" height="20" uuid="9a6c48a0-105a-406a-9c32-8bf20f3978fe"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="0" width="56" height="20" uuid="d8410d5f-a0ed-43ab-913e-cec146edc08c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2461a39a-9804-4610-89c3-57b66cfef200"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ST_CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="146" height="20" uuid="01b1e6bc-62aa-41e8-81e3-2bce8bd5392a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82fffba5-2965-42de-b289-0a420c9e91b3"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ENAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="0" width="60" height="20" uuid="ee89e68e-80fc-4578-a516-6d527a0f768b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6e87b01-71c8-400a-9411-010e3ba0b1f9"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ST_REDT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="0" width="144" height="20" uuid="7ba3333d-520c-4f45-9fc8-bbdbf99de61f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fb0492ef-5bdc-4849-a339-b3eda656563d"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="740" y="0" width="62" height="20" uuid="4a43a3fd-92ea-44f4-9817-aea3cdc2b2df">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="16ef35a6-a120-4aca-aebc-90287df6c372"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ST_M3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="0" width="140" height="20" uuid="5101ef72-9de0-4fc1-9b5b-e7f46cd701c0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="917412b0-5c2b-4d2c-9ea1-e6790711fcc9"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ST_POSITON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="120" height="20" uuid="11515483-eafa-4b38-9091-89f2c2a86521">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d507806c-f647-457d-8530-e9440f2cf22e"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TNAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+		</band>
+	</pageFooter>
+</jasperReport>
